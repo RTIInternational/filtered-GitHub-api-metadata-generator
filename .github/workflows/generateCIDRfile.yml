@@ -36,7 +36,7 @@ jobs:
           path: outputs/filtered_metadata.js
           write-mode: overwrite
           contents: |
-            ${{join(steps.filter_data.outputs.*, '\n')}
+            ${{join(steps.filter_data.outputs.*, '\n')}}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
