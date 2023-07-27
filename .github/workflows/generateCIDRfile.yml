@@ -29,8 +29,7 @@ jobs:
     - name: Execute Metadata filter script
       id: filter_data
       run: |
-        BLOCKS=node ./index.js
-        echo "::set-output name=BLOCKS::$BLOCKS"
+        echo "::set-output name=blocks::$(node ./index.js)
     
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
@@ -38,7 +37,7 @@ jobs:
           path: outputs/filtered_metadata.txt
           write-mode: overwrite
           contents: |
-            ${{join(steps.filter_data.outputs.BLOCKS, '\n')}}
+            ${{join(steps.filter_data.outputs.blocks, '\n')}}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
