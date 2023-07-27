@@ -30,7 +30,7 @@ jobs:
       id: filter_data
       run: |
         node ./index.js > txtfile.txt
-        # echo "TXTFILE=$(cat txtfile.txt)" >> $GITHUB_OUTPUT
+        echo "TXTFILE=$(cat txtfile.txt)" >> $GITHUB_OUTPUT
     
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
@@ -38,7 +38,7 @@ jobs:
           path: outputs/filtered_metadata.txt
           write-mode: overwrite
           contents: |
-            ${{ cat txtfile.txt }}
+            ${{ steps.filter_data.outputs.TXTFILE }}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
