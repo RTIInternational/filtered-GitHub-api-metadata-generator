@@ -6,7 +6,7 @@ name: Generate Filtered CIDR Metadata file
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '0 22 * * *'    # At every 15th minute
+    - cron:  '0 22 * * 0'    # At 22:00 every Sunday.
 
 jobs:
   build:
@@ -29,23 +29,7 @@ jobs:
     - name: Execute Metadata filter script
       id: filter_data
       run: |
-        node ./index.js > ./outputs/test.txt
-#      run: |
-#        TXTFILE=$(node ./index.js)        
-#        TXTFILE="${TXTFILE//$'\n'/'%0A'}"
-#        TXTFILE="${TXTFILE//$'\r'/'%0D'}"
-#        echo "TXTFILE=$TXTFILE" >> $GITHUB_OUTPUT
-#    
-#    - name: Overwrite file
-#      uses: "DamianReeves/write-file-action@master"
-#      with:
-#          path: outputs/filtered_metadata.txt
-#          write-mode: overwrite
-#          contents: |
-#            TXTFILE=${{ steps.filter_data.outputs.TXTFILE }}        
-#            TXTFILE="${TXTFILE//$'%0A'/'\n'}"
-#            TXTFILE="${TXTFILE//$'%0D'/'\r'}"
-#            echo ${TXTFILE}
+        node ./index.js > ./outputs/filtered_metadata.txt
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
