@@ -4,6 +4,7 @@
 name: Generate Filtered CIDR Metadata file
 
 on:
+  workflow_dispatch:
   schedule:
     - cron:  '0 22 * * *'    # At every 15th minute
 
