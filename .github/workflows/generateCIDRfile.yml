@@ -29,8 +29,10 @@ jobs:
     - name: Execute Metadata filter script
       id: filter_data
       run: |
-        node ./index.js > txtfile.txt
-        echo "TXTFILE=$(cat txtfile.txt)" >> $GITHUB_OUTPUT
+        TXTFILE=$(node ./index.js)        
+        TXTFILE="${TXTFILE//$'\n'/'%0A'}"
+        TXTFILE="${TXTFILE//$'\r'/'%0D'}"
+        echo "TXTFILE=$TXTFILE" >> $GITHUB_OUTPUT
     
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
