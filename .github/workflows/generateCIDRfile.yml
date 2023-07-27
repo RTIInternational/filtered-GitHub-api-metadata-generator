@@ -28,15 +28,17 @@ jobs:
     
     - name: Execute Metadata filter script
       id: filter_data
-      run: echo "node ./index.js" >> $GITHUB_OUTPUT
+      run: |
+        BLOCKS=node ./index.js
+        echo "::set-output name=BLOCKS::$BLOCKS"
     
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
       with:
-          path: outputs/filtered_metadata.js
+          path: outputs/filtered_metadata.txt
           write-mode: overwrite
           contents: |
-            ${{join(steps.filter_data.outputs.stdout, '\n')}}
+            ${{join(steps.filter_data.outputs.BLOCKS, '\n')}}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
