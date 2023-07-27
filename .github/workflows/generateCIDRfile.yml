@@ -28,7 +28,7 @@ jobs:
     
     - name: Execute Metadata filter script
       id: filter_data
-      run: node ./index.js
+      run: echo "node ./index.js" >> $GITHUB_OUTPUT
     
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
