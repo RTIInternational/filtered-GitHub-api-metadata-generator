@@ -38,7 +38,7 @@ jobs:
           path: outputs/filtered_metadata.txt
           write-mode: overwrite
           contents: |
-            ${{ $(cat txtfile.txt) }}
+            ${{ cat txtfile.txt }}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
