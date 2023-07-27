@@ -29,7 +29,8 @@ jobs:
     - name: Execute Metadata filter script
       id: filter_data
       run: |
-        echo "$(blocks=node ./index.js)" >> $GITHUB_OUTPUT
+        TXTFILE=$node ./index.js
+        echo "TXTFILE=$TXTFILE" >> $GITHUB_OUTPUT
     
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
@@ -37,7 +38,7 @@ jobs:
           path: outputs/filtered_metadata.txt
           write-mode: overwrite
           contents: |
-            ${{join(steps.filter_data.outputs.blocks, '\n')}}
+            ${{join(steps.filter_data.outputs.TXTFILE, '\n')}}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
