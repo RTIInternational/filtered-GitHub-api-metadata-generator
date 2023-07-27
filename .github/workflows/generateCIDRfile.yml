@@ -27,8 +27,8 @@ jobs:
       run: npm install
     
     - name: Execute Metadata filter script
-      run: node ./index.js
       id: filter_data
+      run: node ./index.js
     
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
@@ -36,7 +36,7 @@ jobs:
           path: outputs/filtered_metadata.js
           write-mode: overwrite
           contents: |
-            ${{join(steps.filter_data.outputs.*, '\n')}}
+            ${{join(steps.filter_data.outputs.stdout, '\n')}}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
@@ -44,6 +44,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           force: true
-          message: 'Overwritten by Github Actions - ${date}'
+          message: 'Overwritten by Github Actions - ${{ date }}'
     
     
