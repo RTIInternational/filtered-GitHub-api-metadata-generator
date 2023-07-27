@@ -14,7 +14,7 @@ jobs:
 
     steps:    
     - name: Checkout Code
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
     
     - name: Setup Node.js 16.x
       uses: actions/setup-node@v3
@@ -23,23 +23,23 @@ jobs:
         cache: 'npm'
     
     - name: Install Dependancies
-    - run: npm install
+      run: npm install
     
     - name: Execute Metadata filter script
-    - run: node ./index.js
-    - id: filter_data
+      run: node ./index.js
+      id: filter_data
     
     - name: Overwrite file
-    - uses: "DamianReeves/write-file-action@master"
-    - with:
+      uses: "DamianReeves/write-file-action@master"
+      with:
           path: outputs/filtered_metadata.js
           write-mode: overwrite
           contents: |
             ${{join(steps.filter_data.outputs.*, '\n')}
             
     - name: Commit & Push
-    - uses: Andro999b/push@v1.3
-    - with:
+      uses: Andro999b/push@v1.3
+      with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           force: true
