@@ -40,7 +40,10 @@ jobs:
           path: outputs/filtered_metadata.txt
           write-mode: overwrite
           contents: |
-            ${{ steps.filter_data.outputs.TXTFILE }}
+            TXTFILE=${{ steps.filter_data.outputs.TXTFILE }}        
+            TXTFILE="${TXTFILE//$'%0A'/'\n'}"
+            TXTFILE="${TXTFILE//$'%0D'/'\r'}"
+            echo ${TXTFILE}
             
     - name: Commit & Push
       uses: Andro999b/push@v1.3
