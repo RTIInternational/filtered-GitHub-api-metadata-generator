@@ -9,14 +9,14 @@ async function processMetadata() {
         let metadata = resp.data
 
         //only grab CIDR blocks from desired services
-        filteredAddresses += metadata.hooks.join('\r\n')    + '\r\n'
-        filteredAddresses += metadata.web.join('\r\n')      + '\r\n'
-        filteredAddresses += metadata.api.join('\r\n')      + '\r\n'
-        filteredAddresses += metadata.git.join('\r\n')      + '\r\n'
-        filteredAddresses += metadata.packages.join('\r\n') + '\r\n'
-        filteredAddresses += metadata.pages.join('\r\n')    + '\r\n'
-        filteredAddresses += metadata.importer.join('\r\n') + '\r\n'
-        filteredAddresses += metadata.web.join('\r\n')      + '\r\n'
+        filteredAddresses += metadata.hooks.join('\n')    + '\n'
+        filteredAddresses += metadata.web.join('\n')      + '\n'
+        filteredAddresses += metadata.api.join('\n')      + '\n'
+        filteredAddresses += metadata.git.join('\n')      + '\n'
+        filteredAddresses += metadata.packages.join('\n') + '\n'
+        filteredAddresses += metadata.pages.join('\n')    + '\n'
+        filteredAddresses += metadata.importer.join('\n') + '\n'
+        filteredAddresses += metadata.web.join('\n')      + '\n'
 
         console.log(filteredAddresses)
 
